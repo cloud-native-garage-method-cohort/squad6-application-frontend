@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: room-6-frontend-app
+    app.kubernetes.io/instance: room-6-frontend-app-instance
+    app.kubernetes.io/name: room-6-frontend-app
+  name: room-6-frontend-app
+spec:
+  ports:
+    - name: http
+      port: 80
+      protocol: TCP
+      targetPort: 8501
+  selector:
+    app.kubernetes.io/instance: room-6-frontend-app-instance
+    app.kubernetes.io/name: room-6-frontend-app
+  sessionAffinity: None
+  type: ClusterIP
