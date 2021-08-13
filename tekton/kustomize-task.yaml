@@ -36,7 +36,7 @@ spec:
         kustomize edit set image "*=$(params.image-repo):$(params.commit)"
         kustomize edit set label "app.kubernetes.io/instance:$(params.app-namespace)"
         kustomize edit set label "app.kubernetes.io/name:$(params.app-namespace)-$(params.app-name)"
-        kustomize edit set label "app.openshift.io/runtime:js"
+        kustomize edit set label "app.openshift.io/runtime:python"
         kustomize edit set label "app:$(params.app-namespace)"
 
         kustomize edit add annotation "app.openshift.io/vcs-uri:$(params.source-repo)"
