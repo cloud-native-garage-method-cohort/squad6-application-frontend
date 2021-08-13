@@ -15,9 +15,8 @@ import streamlit as st
 from PIL import Image
 
 
-
-
-BASE_URL = 'http://localhost:8000'
+URL = os.environ.get('INGRESS_HOST')
+BASE_URL = 'http://' + URL + ':8000'
 ENDPOINT = '/predict'
 MODEL = 'yolov3-tiny'
 
@@ -131,8 +130,8 @@ def response_from_server(url, image_file, verbose=True):
     Returns:
         requests.models.Response: Response from the server.
     """
-    
-    files = {'file': image_file}
+    files = {'img': ('test.jpeg', image_file, 'image/jpeg')}
+    # files = {'file': image_file, ''}
     response = requests.post(url, files=files)
     status_code = response.status_code
     if verbose:
@@ -167,18 +166,17 @@ def run_app(img):
     display_img = img #np.array(Image.open(img).convert('RGB'))
     url_with_endpoint_no_params = BASE_URL + ENDPOINT
     full_url = url_with_endpoint_no_params + "?model=" + MODEL
-
-    # img_byte_arr = io.BytesIO()
-    # Image.open(img).convert('RGB').save(img_byte_arr, format='PNG')
-    # img_byte_arr = img_byte_arr.getvalue()
+    print(full_url)
 
     image_file = Image.open(display_img)
+    # with open(img.read(), "rb") as pred_file:
+    prediction = response_from_server(full_url, img.read())
 
-    prediction = image_file #response_from_server(full_url, image_file)
+    # prediction = response_from_server(full_url, image_file)
 
-    #print(prediction.status_code)
+    print(prediction.status_code)
 
-    result_img = image_file #get_image_from_response(prediction)
+    result_img = get_image_from_response(prediction)
         
     left_column.image(image_file, caption = "Selected Input")
 
