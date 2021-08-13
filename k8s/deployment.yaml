@@ -62,11 +62,12 @@ spec:
           volumeMounts:
             - mountPath: "/.streamlit/"
               name: frontend-model-storage
-            
       volumes:
         - name: frontend-model-storage
-          persistentVolumeClaim:
-            claimName: frontend-model-storage
+          csi:
+            driver: inline.storage.kubernetes.io
+            volumeAttributes:
+              foo: bar
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       schedulerName: default-scheduler
