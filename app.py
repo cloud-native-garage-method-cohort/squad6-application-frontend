@@ -164,7 +164,7 @@ def run_app(img):
     # xb, yb = app_helper.load_and_preprocess_img(img, num_hg_blocks=1)
     # display_image = cv2.resize(np.array(xb[0]), IMAGE_DISPLAY_SIZE,
     #                     interpolation=cv2.INTER_LINEAR)
-    display_img = np.array(Image.open(img).convert('RGB'))
+    display_img = img #np.array(Image.open(img).convert('RGB'))
     url_with_endpoint_no_params = BASE_URL + ENDPOINT
     full_url = url_with_endpoint_no_params + "?model=" + MODEL
 
@@ -172,12 +172,15 @@ def run_app(img):
     # Image.open(img).convert('RGB').save(img_byte_arr, format='PNG')
     # img_byte_arr = img_byte_arr.getvalue()
 
-    with open(display_img.tobytes(), "rb") as image_file:
-        prediction = response_from_server(full_url, image_file)
+    image_file = Image.open(display_img)
 
-    result_img = get_image_from_response(prediction)
+    prediction = image_file #response_from_server(full_url, image_file)
+
+    #print(prediction.status_code)
+
+    result_img = image_file #get_image_from_response(prediction)
         
-    left_column.image(display_img, caption = "Selected Input")
+    left_column.image(image_file, caption = "Selected Input")
 
     # handle, session = load_model()
 
@@ -248,16 +251,14 @@ def main():
     #         run_app(k)
 
     elif app_mode == SIDEBAR_OPTION_UPLOAD_IMAGE:
-        #upload = st.empty()
-        #with upload:
-        st.sidebar.info('PRIVACY POLICY: uploaded images are never saved or stored. They are held entirely within memory for prediction \
-            and discarded after the final results are displayed. ')
+
+
         f = st.sidebar.file_uploader("Please Select to Upload an Image", type=['png', 'jpg', 'jpeg', 'tiff', 'gif'])
         if f is not None:
-            tfile = tempfile.NamedTemporaryFile(delete=True)
-            tfile.write(f.read())
             st.sidebar.write('Please wait for the magic to happen! This may take up to a minute.')
-            run_app(tfile)
+            run_app(f)
+        #upload = st.empty()
+        #with upload:
 
 
     # elif app_mode == SIDEBAR_OPTION_MEET_TEAM:
