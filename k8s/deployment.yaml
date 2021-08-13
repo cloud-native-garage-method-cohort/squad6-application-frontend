@@ -65,7 +65,7 @@ spec:
       volumes:
         - name: frontend-model-storage
           persistentVolumeClaim:
-            claimName: backend-model-storage
+            claimName: frontend-model-storage
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       schedulerName: default-scheduler
