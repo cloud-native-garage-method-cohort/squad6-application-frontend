@@ -130,8 +130,8 @@ def response_from_server(url, image_file, verbose=True):
     Returns:
         requests.models.Response: Response from the server.
     """
-    files = {'img': ('test.jpeg', image_file, 'image/jpeg')}
-    # files = {'file': image_file, ''}
+    #files = {'img': ('test.jpeg', image_file, 'image/jpeg')}
+    files = {'file': image_file}
     response = requests.post(url, files=files)
     status_code = response.status_code
     if verbose:
