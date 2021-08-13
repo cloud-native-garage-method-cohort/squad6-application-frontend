@@ -150,6 +150,7 @@ def get_image_from_response(response):
     image_stream.seek(0)
     file_bytes = np.asarray(bytearray(image_stream.read()), dtype=np.uint8)
     image = cv2.imdecode(file_bytes, cv2.IMREAD_COLOR)
+    image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
     return image
     # filename = "image_with_objects.jpeg"
     # cv2.imwrite(f'images_predicted/{filename}', image)

@@ -6,15 +6,16 @@ WORKDIR /usr/src/app
 
 COPY requirements.txt .
 
-RUN mkdir -p /streamlit
+
 RUN pip install opencv-python==4.5.3.56
 
 RUN pip install -r requirements.txt
 
 EXPOSE 8501
 
+RUN mkdir -p /streamlit
 COPY app.py .
 
-ENTRYPOINT ["streamlit", "run"]
+ENTRYPOINT ["streamlit", "run", "--server.headless=true"]
 
 CMD ["app.py"]
