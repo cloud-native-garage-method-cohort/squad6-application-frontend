@@ -169,8 +169,11 @@ def run_app(img):
     print(full_url)
 
     image_file = Image.open(display_img)
-    # with open(img.read(), "rb") as pred_file:
-    prediction = response_from_server(full_url, img.read())
+    
+    image_file.save("test.jpg")
+
+    with open("test.jpg", "rb") as pred_file:
+        prediction = response_from_server(full_url, pred_file)
 
     # prediction = response_from_server(full_url, image_file)
 
