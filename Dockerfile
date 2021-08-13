@@ -6,6 +6,7 @@ WORKDIR /usr/src/app
 
 COPY requirements.txt .
 
+RUN mkdir -p /streamlit
 RUN pip install opencv-python==4.5.3.56
 
 RUN pip install -r requirements.txt

@@ -1,0 +1,25 @@
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  generateName: room6-frontend-pipeline-run-
+spec:
+  params:
+    - name: source-repo
+      value: https://github.com/cloud-native-garage-method-cohort/squad6-application-frontend
+    - name: app-name
+      value: room6-frontend-app
+    - name: image-repo
+      value: quay.io/nickmerrett/room6-frontend
+  serviceAccountName: build-bot
+  pipelineRef:
+    name: room6-frontend-pipeline
+  workspaces:
+    - name: pipeline-shared-data
+      volumeClaimTemplate:
+        spec:
+          accessModes:
+            - ReadWriteOnce
+          resources:
+            requests:
+              storage: 1Gi
+

@@ -1,0 +1,34 @@
+apiVersion: triggers.tekton.dev/v1alpha1
+kind: TriggerTemplate
+metadata:
+  name: backend-trigger
+spec:
+  params:
+    - name: source-repo
+      description: The git repository url
+  resourcetemplates:
+    - apiVersion: tekton.dev/v1beta1
+      kind: PipelineRun
+      metadata:
+        generateName: room6-backend-pipeline-run-
+      spec:
+        serviceAccountName: build-bot
+        pipelineRef:
+          name: room6-backend-pipeline
+        params:
+          - name: source-repo
+            value: $(tt.params.source-repo)
+          - name: app-name
+            value: room6-backend-app
+          - name: image-repo
+            value: quay.io/nickmerrett/room6-ml-backend
+        workspaces:
+          - name: pipeline-shared-data
+            volumeClaimTemplate:
+              spec:
+                accessModes:
+                  - ReadWriteOnce
+                resources:
+                  requests:
+                    storage: 1Gi
+
