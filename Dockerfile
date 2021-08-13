@@ -15,6 +15,6 @@ EXPOSE 8501
 
 COPY app.py .
 
-ENTRYPOINT ["streamlit", "run"]
+ENTRYPOINT ["streamlit", "--server.headless=true", ""run"]
 
 CMD ["app.py"]
