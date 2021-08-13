@@ -171,9 +171,9 @@ def run_app(img):
 
     image_file = Image.open(display_img)
     
-    image_file.save("test.jpg")
+    image_file.save("/.streamlit/test.jpg")
 
-    with open("test.jpg", "rb") as pred_file:
+    with open("/.streamlit/test.jpg", "rb") as pred_file:
         prediction = response_from_server(full_url, pred_file)
 
     # prediction = response_from_server(full_url, image_file)
