@@ -18,7 +18,7 @@ from PIL import Image
 URL = os.environ.get('INGRESS_HOST')
 BASE_URL = 'http://' + URL + ':8000'
 ENDPOINT = '/predict'
-MODEL = 'yolov3-tiny'
+MODEL = 'yolov4'
 
 
 
