@@ -2,6 +2,9 @@ FROM python:3.7-buster
 
 RUN apt-get update && apt-get install ffmpeg libsm6 libxext6  -y && apt-get clean && rm -rf /var/lib/apt/lists/*
 
+WORKDIR /
+RUN mkdir -p .streamlit
+
 WORKDIR /usr/src/app
 
 COPY requirements.txt .

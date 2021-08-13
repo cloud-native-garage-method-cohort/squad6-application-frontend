@@ -59,6 +59,14 @@ spec:
           resources: {}
           terminationMessagePath: /dev/termination-log
           terminationMessagePolicy: File
+          volumeMounts:
+            - mountPath: "/.streamlit/"
+              name: frontend-model-storage
+            
+      volumes:
+        - name: frontend-model-storage
+          persistentVolumeClaim:
+            claimName: frontend-model-storage
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       schedulerName: default-scheduler
