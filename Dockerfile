@@ -1,12 +1,18 @@
-FROM registry.access.redhat.com/ubi8/python-38:1-68
+FROM python:3.7-buster
+
+RUN apt-get update && apt-get install ffmpeg libsm6 libxext6  -y && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /usr/src/app
 
-COPY app.py requirements.txt .
+COPY requirements.txt .
+
+RUN pip install opencv-python==4.5.3.56
 
 RUN pip install -r requirements.txt
 
 EXPOSE 8501
+
+COPY app.py .
 
 ENTRYPOINT ["streamlit", "run"]
 
