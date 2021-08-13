@@ -64,10 +64,8 @@ spec:
               name: frontend-model-storage
       volumes:
         - name: frontend-model-storage
-          csi:
-            driver: inline.storage.kubernetes.io
-            volumeAttributes:
-              foo: bar
+          persistentVolumeClaim:
+            claimName: backend-model-storage
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       schedulerName: default-scheduler
