@@ -130,8 +130,8 @@ def response_from_server(url, image_file, verbose=True):
     Returns:
         requests.models.Response: Response from the server.
     """
-    files = {'img': ('test.jpeg', image_file, 'image/jpeg')}
-    # files = {'file': image_file, ''}
+    #files = {'img': ('test.jpeg', image_file, 'image/jpeg')}
+    files = {'file': image_file}
     response = requests.post(url, files=files)
     status_code = response.status_code
     if verbose:
@@ -169,8 +169,11 @@ def run_app(img):
     print(full_url)
 
     image_file = Image.open(display_img)
-    # with open(img.read(), "rb") as pred_file:
-    prediction = response_from_server(full_url, img.read())
+    
+    image_file.save("test.jpg")
+
+    with open("test.jpg", "rb") as pred_file:
+        prediction = response_from_server(full_url, pred_file)
 
     # prediction = response_from_server(full_url, image_file)
 
