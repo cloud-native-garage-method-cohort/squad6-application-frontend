@@ -8,7 +8,7 @@ metadata:
     app: room-6-frontend-app
     app.kubernetes.io/instance: room-6-frontend-app-instance
     app.kubernetes.io/name: room-6-frontend-app
-    app.openshift.io/runtime: js
+    app.openshift.io/runtime: python
   name: room-6-frontend-app
 spec:
   progressDeadlineSeconds: 600

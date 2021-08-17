@@ -9,7 +9,7 @@ spec:
     - name: app-name
       value: room6-backend-app
     - name: image-repo
-      value: quay.io/nickmerrett/room6-ml-backend
+      value: quay.io/sherryyu/room6-backend
   serviceAccountName: build-bot
   pipelineRef:
     name: room6-backend-pipeline

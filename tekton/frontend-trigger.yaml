@@ -21,7 +21,7 @@ spec:
           - name: app-name
             value: room6-frontend-app
           - name: image-repo
-            value: quay.io/nickmerrett/room6-frontend
+            value: quay.io/sherryyu/room6-frontend
         workspaces:
           - name: pipeline-shared-data
             volumeClaimTemplate:
