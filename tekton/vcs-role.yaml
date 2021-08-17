@@ -9,6 +9,7 @@ rules:
       - eventlisteners
       - triggerbindings
       - triggertemplates
+      - routes
     verbs:
       - get
   - apiGroups:
@@ -22,6 +23,7 @@ rules:
       - ""
     resources:
       - configmaps
+      - routes
     verbs:
       - list
 
