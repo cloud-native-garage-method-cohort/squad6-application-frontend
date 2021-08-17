@@ -22,6 +22,14 @@ rules:
       - create
       - patch
   - apiGroups:
+      - apps
+    resources:
+      - pvc
+    verbs:
+      - get
+      - create
+      - patch
+  - apiGroups:
       - ""
     resources:
       - services
