@@ -24,7 +24,7 @@ rules:
   - apiGroups:
       - apps
     resources:
-      - pvc
+      - PersistentVolumeClaim
     verbs:
       - get
       - create
