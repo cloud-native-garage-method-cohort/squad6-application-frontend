@@ -1,5 +1,5 @@
 # squad6-application-frontend
 
-Test Trigger #1
+Test Trigger #2
 
 hello
