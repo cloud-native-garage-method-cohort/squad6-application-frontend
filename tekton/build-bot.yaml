@@ -1,0 +1,15 @@
+apiVersion: v1
+imagePullSecrets:
+- name: build-bot-dockercfg-n5b6c
+kind: ServiceAccount
+metadata:
+  creationTimestamp: "2021-08-24T06:43:29Z"
+  name: build-bot
+  namespace: room6-project
+  resourceVersion: "89717"
+  selfLink: /api/v1/namespaces/room6-project/serviceaccounts/build-bot
+  uid: 10380236-3efe-4605-8e0c-c37e93b698bb
+secrets:
+- name: build-bot-dockercfg-n5b6c
+- name: build-bot-token-hg468
+- name: quay-io-credentials
